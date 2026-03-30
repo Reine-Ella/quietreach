@@ -1,7 +1,13 @@
 const Database = require('better-sqlite3');
 const path = require('path');
+const fs = require('fs');
 
-const DB_PATH = path.join(__dirname, '..', 'quietreach.db');
+const dbDir = process.env.DB_DIR || path.join(__dirname, '..', 'data');
+if (!fs.existsSync(dbDir)) {
+    fs.mkdirSync(dbDir, { recursive: true });
+}
+
+const DB_PATH = process.env.DB_PATH || path.join(dbDir, 'quietreach.db');
 const db = new Database(DB_PATH);
 
 db.pragma('journal_mode = WAL');
@@ -48,8 +54,8 @@ const mentorCount = db.prepare('SELECT COUNT(*) AS n FROM mentors').get();
 if (mentorCount.n === 0) {
     const ins = db.prepare("INSERT INTO mentors (username, password, specialty, status, created_at) VALUES (?, ?, ?, 'active', ?)");
     ins.run('MentorSarah', 'mentor123', 'Mental Health', '2026-01-15');
-    ins.run('MentorJames', 'mentor123', 'Parenting',     '2026-01-20');
-    ins.run('MentorGrace', 'mentor123', 'Education',     '2026-02-01');
+    ins.run('MentorJames', 'mentor123', 'Parenting', '2026-01-20');
+    ins.run('MentorGrace', 'mentor123', 'Education', '2026-02-01');
 }
 
 module.exports = db;
