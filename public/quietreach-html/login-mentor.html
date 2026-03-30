@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Login - QuietReach</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card mentor-theme">
+            <div class="auth-header">
+                <a href="index.html" class="auth-logo">
+                    <span class="logo-icon">QR</span>
+                    QuietReach
+                </a>
+                <div class="role-badge mentor-badge">MENTOR PORTAL</div>
+                <h1>Mentor Login</h1>
+                <p>Access your dashboard to support young mothers</p>
+            </div>
+
+            <form class="auth-form" id="mentorLoginForm">
+                <div id="errorMessage" class="error-message"></div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Your mentor username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Sign In as Mentor</button>
+            </form>
+
+            <div style="background:#fef3cd;border:1px solid #ffc107;border-radius:8px;padding:0.875rem;margin-top:1.25rem;font-size:0.88rem;color:#92400e;">
+                <strong>Note:</strong> Self-registered mentors must be approved by an admin. Mentors added directly by admin can log in immediately.
+            </div>
+
+            <div class="auth-footer">
+                <p>New mentor? <a href="register.html">Apply here</a></p>
+                <div class="switch-role">
+                    <a href="login-mother.html">Mother Login</a> &bull;
+                    <a href="login-admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

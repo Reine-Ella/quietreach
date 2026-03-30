@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Young Mother Login - QuietReach</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card mother-theme">
+            <div class="auth-header">
+                <a href="index.html" class="auth-logo">
+                    <span class="logo-icon">QR</span>
+                    QuietReach
+                </a>
+                <div class="role-badge mother-badge">MOTHER PORTAL</div>
+                <h1>Welcome Back</h1>
+                <p>Sign in to your anonymous account</p>
+            </div>
+
+            <form class="auth-form" id="motherLoginForm">
+                <div id="errorMessage" class="error-message"></div>
+                <div class="form-group">
+                    <label for="username">Your Username</label>
+                    <input type="text" id="username" placeholder="Your anonymous username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+            </form>
+
+            <div class="privacy-note" style="margin-top:1.25rem">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Your identity is completely anonymous. No real name or personal details are stored.
+            </div>
+
+            <div class="auth-footer">
+                <p>New here? <a href="register.html">Create an anonymous account</a></p>
+                <div class="switch-role">
+                    <a href="login-mentor.html">Mentor Login</a> &bull;
+                    <a href="login-admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

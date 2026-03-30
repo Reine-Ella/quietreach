@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard - QuietReach</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" style="border-top:4px solid var(--primary)">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">QR</span>
+                    <span class="logo-text">QuietReach</span>
+                </div>
+                <p id="mentorWelcome" style="font-size:0.85rem;color:var(--text-muted);margin-top:0.25rem"></p>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="conversations">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Conversations
+                </button>
+                <button class="nav-item" data-tab="profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    My Profile
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="nav-item logout" id="logoutBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Conversations Tab -->
+            <div id="conversationsTab" class="tab-content active">
+                <div class="content-header">
+                    <h1>Conversations</h1>
+                    <p>Messages from young mothers seeking your support.</p>
+                </div>
+
+                <!-- Stats -->
+                <div class="mentor-stats">
+                    <div class="mentor-stat">
+                        <div class="mentor-stat-value" id="totalConversations">0</div>
+                        <div class="mentor-stat-label">Total Conversations</div>
+                    </div>
+                    <div class="mentor-stat">
+                        <div class="mentor-stat-value" id="unreadMessages">0</div>
+                        <div class="mentor-stat-label">Unread Messages</div>
+                    </div>
+                </div>
+
+                <div class="chat-container">
+                    <div class="mentor-list">
+                        <h3>Messages</h3>
+                        <p class="conversations-subtitle">From young mothers</p>
+                        <div class="mentors" id="conversationsList"></div>
+                    </div>
+                    <div class="chat-area">
+                        <div class="chat-header" id="mentorChatHeader">
+                            <span style="color:var(--text-muted)">Select a conversation to view messages</span>
+                        </div>
+                        <div class="chat-messages" id="mentorChatMessages">
+                            <div class="chat-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                <p>Select a conversation to view and reply to messages.</p>
+                            </div>
+                        </div>
+                        <form class="chat-input-area" id="mentorChatForm" style="display:none">
+                            <input type="text" id="mentorMessageInput" placeholder="Type your reply...">
+                            <button type="submit" class="btn btn-primary">Reply</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profileTab" class="tab-content">
+                <div class="content-header">
+                    <h1>My Mentor Profile</h1>
+                    <p>Your account information.</p>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <span id="profileInitial">?</span>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profileUsername"></h2>
+                        <span class="role-badge" id="profileRole" style="background:#d1fae5;color:#065f46"></span>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Account Type</span>
+                            <span class="detail-value" id="accountType"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Specialty</span>
+                            <span class="detail-value" id="mentorSpecialtyDisplay"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Member Since</span>
+                            <span class="detail-value" id="memberSince"></span>
+                        </div>
+                    </div>
+                    <div class="privacy-reminder" style="background:#e8f5e9">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <div>
+                            <strong>Your Impact</strong>
+                            <p>You are making a real difference in the lives of young mothers. Thank you for your service and support.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/mentor-chat.js"></script>
+    <script>
+        /* Set welcome message */
+        const _user = getCurrentUser();
+        if (_user) document.getElementById('mentorWelcome').textContent = 'Mentor: ' + _user.username;
+    </script>
+</body>
+</html>

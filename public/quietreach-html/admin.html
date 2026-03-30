@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - QuietReach</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" style="border-top:4px solid #6366f1">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">QR</span>
+                    <span class="logo-text">QuietReach</span>
+                </div>
+                <span class="admin-badge-nav">ADMIN PANEL</span>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="overview">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Overview
+                </button>
+                <button class="nav-item" data-tab="pending">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                    Pending Applications
+                    <span id="pendingCount" class="pending-badge" style="display:none"></span>
+                </button>
+                <button class="nav-item" data-tab="mentors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Manage Mentors
+                </button>
+                <button class="nav-item" data-tab="users">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Users
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="nav-item logout" id="logoutBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Overview Tab -->
+            <div id="overviewTab" class="tab-content active">
+                <div class="content-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome back, <strong id="adminUsername">Admin</strong>. Here is a summary of the platform.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon users">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalUsers">0</span>
+                            <span class="stat-label">Total Users</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon mothers">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalMothers">0</span>
+                            <span class="stat-label">Young Mothers</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon mentors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalMentors">0</span>
+                            <span class="stat-label">Active Mentors</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="pendingMentors">0</span>
+                            <span class="stat-label">Pending Approval</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h2>Platform Information</h2>
+                    <div class="info-card" style="background:white;border-radius:12px;border:1px solid var(--border);padding:1.5rem;margin-top:1rem">
+                        <p>QuietReach provides anonymous support for teenage mothers through:</p>
+                        <ul>
+                            <li>Anonymous 1-on-1 chat with approved mentors</li>
+                            <li>Educational articles on parenting, mental health, and life skills</li>
+                            <li>Private, secure profile management</li>
+                        </ul>
+                        <div class="privacy-note" style="margin-top:1rem">
+                            <strong>Privacy Note:</strong> All user data is stored locally. No real personal information is collected from users.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Tab -->
+            <div id="pendingTab" class="tab-content">
+                <div class="content-header">
+                    <h1>Pending Applications</h1>
+                    <p>Review and approve or reject mentor applications.</p>
+                </div>
+                <div class="data-table-container" id="pendingList"></div>
+            </div>
+
+            <!-- Mentors Tab -->
+            <div id="mentorsTab" class="tab-content">
+                <div class="content-header">
+                    <h1>Manage Mentors</h1>
+                    <p>View and manage all approved mentors.</p>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-primary" id="addMentorBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        Add New Mentor
+                    </button>
+                </div>
+                <div class="data-table-container" id="mentorsList"></div>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="usersTab" class="tab-content">
+                <div class="content-header">
+                    <h1>Registered Users</h1>
+                    <p>View all registered users on the platform.</p>
+                </div>
+                <div class="data-table-container" id="usersList"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Add Mentor Modal -->
+    <div class="modal" id="addMentorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Mentor</h2>
+                <button class="modal-close-btn" onclick="closeAddMentorModal()">&times;</button>
+            </div>
+            <form id="addMentorForm" style="display:flex;flex-direction:column;gap:1.25rem">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="mentorUsername" placeholder="Mentor username" required style="padding:0.875rem;border:2px solid var(--border);border-radius:8px;font-size:1rem;width:100%;box-sizing:border-box">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="mentorPassword" placeholder="Set a password" required style="padding:0.875rem;border:2px solid var(--border);border-radius:8px;font-size:1rem;width:100%;box-sizing:border-box">
+                </div>
+                <div class="form-group">
+                    <label>Specialty</label>
+                    <select id="mentorSpecialty" required style="padding:0.875rem;border:2px solid var(--border);border-radius:8px;font-size:1rem;width:100%;box-sizing:border-box">
+                        <option value="">Select specialty...</option>
+                        <option value="Mental Health">Mental Health</option>
+                        <option value="Parenting">Parenting</option>
+                        <option value="Education">Education</option>
+                        <option value="Life Skills">Life Skills</option>
+                        <option value="General Support">General Support</option>
+                    </select>
+                </div>
+                <div style="background:#d1fae5;border:1px solid #10b981;border-radius:8px;padding:0.875rem;font-size:0.88rem;color:#065f46">
+                    ✓ Admin-added mentors are <strong>immediately active</strong> and can log in right away.
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeAddMentorModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Mentor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

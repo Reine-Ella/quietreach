@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - QuietReach</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" style="border-top:4px solid #ec4899">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">QR</span>
+                    <span class="logo-text">QuietReach</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="chat" style="--active-color:#ec4899">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Chat with Mentor
+                </button>
+                <button class="nav-item" data-tab="content">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    Resources
+                </button>
+                <button class="nav-item" data-tab="profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    My Profile
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="nav-item logout" id="logoutBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Chat Tab -->
+            <div id="chatTab" class="tab-content active">
+                <div class="content-header">
+                    <h1>Chat with a Mentor</h1>
+                    <p>Your conversations are completely anonymous and private.</p>
+                </div>
+                <div class="chat-container">
+                    <div class="mentor-list">
+                        <h3>Available Mentors</h3>
+                        <div class="mentors" id="mentorList"></div>
+                    </div>
+                    <div class="chat-area">
+                        <div class="chat-header" id="chatHeader">
+                            <span style="color:var(--text-muted)">Select a mentor to start chatting</span>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="chat-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                <p>Choose a mentor to start your anonymous conversation.</p>
+                                <p style="font-size:0.85rem;color:var(--text-muted)">Your identity stays completely private.</p>
+                            </div>
+                        </div>
+                        <form class="chat-input-area" id="chatForm" style="display:none">
+                            <input type="text" id="messageInput" placeholder="Type your message...">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tab -->
+            <div id="contentTab" class="tab-content">
+                <div class="content-header">
+                    <h1>Resources &amp; Articles</h1>
+                    <p>Helpful articles and guides tailored for young mothers.</p>
+                </div>
+                <div class="content-filters">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="mental-health">Mental Health</button>
+                    <button class="filter-btn" data-category="parenting">Parenting</button>
+                    <button class="filter-btn" data-category="education">Education</button>
+                    <button class="filter-btn" data-category="life-skills">Life Skills</button>
+                </div>
+                <div class="articles-grid" id="articlesList"></div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profileTab" class="tab-content">
+                <div class="content-header">
+                    <h1>My Profile</h1>
+                    <p>Your anonymous account information.</p>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <span id="profileInitial">?</span>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profileUsername"></h2>
+                        <span class="role-badge" id="profileRole"></span>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Account Type</span>
+                            <span class="detail-value" id="accountType"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Member Since</span>
+                            <span class="detail-value" id="memberSince"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Privacy</span>
+                            <span class="detail-value">Anonymous</span>
+                        </div>
+                    </div>
+                    <div class="privacy-reminder">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div>
+                            <strong>Your Privacy is Protected</strong>
+                            <p>QuietReach never collects or stores your real name, age, or contact information. Your anonymity is guaranteed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Article Modal -->
+    <div class="modal" id="articleModal">
+        <div class="modal-content" style="max-width:620px">
+            <button class="modal-close-btn" onclick="closeArticleModal()" style="position:absolute;top:1rem;right:1rem">&times;</button>
+            <div id="articleContent" style="line-height:1.8;color:var(--text-primary)"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/content.js"></script>
+    <script>
+        /* Override nav active color for mother theme */
+        document.querySelectorAll('.nav-item[data-tab]').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(n => {
+                    n.style.backgroundColor = '';
+                    n.style.color = '';
+                });
+                this.style.backgroundColor = '#ec4899';
+                this.style.color = 'white';
+            });
+        });
+        document.querySelector('.nav-item[data-tab="chat"]').style.backgroundColor = '#ec4899';
+        document.querySelector('.nav-item[data-tab="chat"]').style.color = 'white';
+    </script>
+</body>
+</html>
